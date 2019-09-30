@@ -1,0 +1,27 @@
+﻿@model MovieStore.View_Models.RandomMovieViewModel
+@{
+	ViewBag.Title = "Customers";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+@if (Model.Customers.Count > 0)
+{
+	<ul>
+		@{
+			var c = 0;
+			foreach (var customer in Model.Customers)
+			{
+				c++;
+				var link = "../Movies/Details/" + c;
+				<li><a href=@link>@customer.Name</a></li>
+			}
+		}
+	</ul>
+}
+else
+{
+	<p>No customer registered yet ! </p>
+}
+
+
