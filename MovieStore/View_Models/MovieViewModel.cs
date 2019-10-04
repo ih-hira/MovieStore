@@ -6,7 +6,7 @@ using MovieStore.Models;
 
 namespace MovieStore.View_Models
 {
-	public class RandomMovieViewModel
+	public class MovieViewModel
 	{
 		public List<Movie> Movie { get; set; }
 		public List<Customer> Customers { get; set; }

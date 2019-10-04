@@ -1,11 +1,11 @@
-﻿@model MovieStore.View_Models.RandomMovieViewModel
+﻿@model MovieStore.View_Models.MovieViewModel
 @{
 	ViewBag.Title = "Customers";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Customers</h2>
-@if (Model.Customers.Count > 0)
+@if (Model.Customers.Count> 0)
 {
 	<ul>
 		@{
