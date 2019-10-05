@@ -187,9 +187,14 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-td,
 th {
-  padding: 0;
+	border: 1px solid aliceblue;
+	text-align: center;
+}
+td {
+	text-align: center;
+	border: 1px solid aliceblue;
+	width: 300px;
 }
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
@@ -2364,9 +2369,6 @@ caption {
   padding-top: 8px;
   padding-bottom: 8px;
   color: #777777;
-  text-align: left;
-}
-th {
   text-align: left;
 }
 .table {

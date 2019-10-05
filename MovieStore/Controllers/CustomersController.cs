@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,7 +22,7 @@ namespace MovieStore.Controllers
 			//	new Customer{Name="Stephen Rock"},
 			//	new Customer{Name="Jemmy Leinstar"}
 			//};
-			var customers = db.Customers.ToList();
+			var customers = db.Customers.Include(c => c.MembershipType).ToList();
 			var viewModel = new MovieViewModel
 			{
 				Customers = customers

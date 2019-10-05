@@ -7,7 +7,7 @@
 <h2>Customers</h2>
 @if (Model.Customers.Count > 0)
 {
-	<ul>
+	@*<ul>
 		@{
 			var c = 0;
 			foreach (var customer in Model.Customers)
@@ -17,7 +17,28 @@
 				<li><a href=@link>@customer.Name</a></li>
 			}
 		}
-	</ul>
+	</ul>*@
+	<table>
+		<thead>
+			<tr>
+				<th>Customer Name</th>
+				<th>Membership Type</th>
+				<th>Discount Rate</th>
+			</tr>
+		</thead>
+		<tbody>
+			@{
+				foreach (var customer in Model.Customers)
+				{
+						<tr>
+							<td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+							<td>@customer.MembershipType.Name</td>
+							<td>@customer.MembershipType.DiscountRate%</td>
+						</tr>
+				}
+			}
+		</tbody>
+	</table>
 }
 else
 {
