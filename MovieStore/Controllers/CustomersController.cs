@@ -33,8 +33,9 @@ namespace MovieStore.Controllers
 		[Route("movies/details/{id}/")]
 		public ActionResult Details(int id)
 		{
-			var cust = db.Customers.SingleOrDefault(c => c.Id == id);
-			Customer customer = new Customer { Name = cust.Name };
+			var cust = db.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+			//Customer customer = new Customer { Name = cust.Name, MembershipType = cust.MembershipType };
+			Customer customer = cust;
 			//if (id == 1)
 			//{
 			//	customer = new Customer { Name = db.Customers.SingleOrDefault(c => c.Id == id).ToString() };
@@ -51,6 +52,7 @@ namespace MovieStore.Controllers
 			//{
 			//	customer = null;
 			//}
+			Console.WriteLine(customer.BirthDate.ToString());
 			return View(customer);
 		}
 	}

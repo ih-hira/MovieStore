@@ -170,6 +170,10 @@
     <Compile Include="Migrations\201910051925307_UpdateMemTypeData.Designer.cs">
       <DependentUpon>201910051925307_UpdateMemTypeData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910061840242_BirthDateAddedInCustomer.cs" />
+    <Compile Include="Migrations\201910061840242_BirthDateAddedInCustomer.Designer.cs">
+      <DependentUpon>201910061840242_BirthDateAddedInCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -260,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910051925307_UpdateMemTypeData.resx">
       <DependentUpon>201910051925307_UpdateMemTypeData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061840242_BirthDateAddedInCustomer.resx">
+      <DependentUpon>201910061840242_BirthDateAddedInCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
