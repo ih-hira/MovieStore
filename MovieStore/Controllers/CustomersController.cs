@@ -30,7 +30,7 @@ namespace MovieStore.Controllers
 			return View(viewModel);
 			
 		}
-		[Route("movies/details/{id}/")]
+	
 		public ActionResult Details(int id)
 		{
 			var cust = db.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);

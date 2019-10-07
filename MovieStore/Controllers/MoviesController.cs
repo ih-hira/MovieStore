@@ -19,39 +19,27 @@ namespace MovieStore.Controllers
 		{
 			return View();
 		}
-		public ActionResult Customers()
-		{
-			//var customers = new List<Customer>
-			//{
-			//	new Customer{Name="John Smith"},
-			//	new Customer{Name="Stephen Rock"},
-			//	new Customer{Name="Jemmy Leinstar"}
-			//};
-			var customers = db.Customers.ToList();
-			//var listOfCustomer = new List<Customer>();
-			//foreach(var c in customers)
-			//{
-			//	listOfCustomer.Add(c);
-			//}
-			var viewModel = new MovieViewModel
-			{
-				Customers = customers
-			};
-			return View(viewModel);
-		}
 		public ActionResult ListOfMovies()
 		{
-			var movies = new List<Movie>
-			{
-				new Movie{Name="Harry Poter"},
-				new Movie{Name="Jab We Met"},
-				new Movie{Name="Shaap Ludu"}
-			};
+			var movies = db.Movies.Include(m => m.Genre).ToList();
+			//var movies = new List<Movie>
+			//{
+			//	new Movie{Name="Harry Poter"},
+			//	new Movie{Name="Jab We Met"},
+			//	new Movie{Name="Shaap Ludu"}
+			//};
 			var viewModel = new MovieViewModel
 			{
 				Movie = movies
 			};
 			return View(viewModel);
+		}
+
+		public ActionResult Details(int? id)
+		{
+			var movie = db.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+			Movie movieDetails = movie;
+			return View(movieDetails);
 		}
 		
 	}
