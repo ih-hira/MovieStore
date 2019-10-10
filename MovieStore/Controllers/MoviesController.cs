@@ -13,7 +13,17 @@ namespace MovieStore.Controllers
 {
 	public class MoviesController : Controller
 	{
-		private ApplicationDbContext db = new ApplicationDbContext();
+		private ApplicationDbContext db;
+
+		public MoviesController()
+		{
+			db = new ApplicationDbContext();
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			db.Dispose();
+		}
 
 		public ActionResult Index()
 		{

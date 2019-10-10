@@ -11,7 +11,17 @@ namespace MovieStore.Controllers
 {
 	public class CustomersController : Controller
 	{
-		private ApplicationDbContext db = new ApplicationDbContext();
+		private ApplicationDbContext db ;
+
+		public CustomersController()
+		{
+			db = new ApplicationDbContext();
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			db.Dispose();
+		}
 		// GET: Customers
 		public ActionResult Index()
 		{
@@ -30,30 +40,56 @@ namespace MovieStore.Controllers
 			return View(viewModel);
 			
 		}
-	
+		public ActionResult NewCustomer()
+		{
+			var membershipTypes = db.MembershipTypes.ToList();
+			var viewModel = new CustomerFormViewModel
+			{
+				MembershipTypes = membershipTypes
+			};
+			return View("CustomerForm",viewModel);
+		}
+
+		[HttpPost]
+		public ActionResult Save(Customer customer)
+		{
+			if (customer.Id == 0)
+				db.Customers.Add(customer);
+			else
+			{
+				var customerInDb = db.Customers.Single(c => c.Id == customer.Id);
+
+				customerInDb.Name = customer.Name;
+				customerInDb.BirthDate = customer.BirthDate;
+				customerInDb.MembershipTypeId = customer.MembershipTypeId;
+				customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+			}
+			db.SaveChanges();
+			return RedirectToAction("Index", "Customers");
+		}
 		public ActionResult Details(int id)
 		{
 			var cust = db.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
-			//Customer customer = new Customer { Name = cust.Name, MembershipType = cust.MembershipType };
 			Customer customer = cust;
-			//if (id == 1)
-			//{
-			//	customer = new Customer { Name = db.Customers.SingleOrDefault(c => c.Id == id).ToString() };
-			//}
-			//else if (id == 2)
-			//{
-			//	customer = new Customer { Name = "Stephen Rock" };
-			//}
-			//else if (id == 3)
-			//{
-			//	customer = new Customer { Name = "Jemmy Leinstar" };
-			//}
-			//else
-			//{
-			//	customer = null;
-			//}
-			Console.WriteLine(customer.BirthDate.ToString());
 			return View(customer);
+		}
+
+		public ActionResult Edit(int id)
+		{
+			var customer = db.Customers.SingleOrDefault(c => c.Id == id);
+
+			if(customer == null)
+			{
+				return HttpNotFound();
+			}
+
+			var viewModel = new CustomerFormViewModel
+			{
+				Customer = customer,
+				MembershipTypes = db.MembershipTypes.ToList()
+			};
+
+			return View("CustomerForm",viewModel);
 		}
 	}
 }

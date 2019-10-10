@@ -13,6 +13,6 @@
 	
 	@if (Model.BirthDate != null)
 	{
-		<li><p>Birth Date: <span>@Model.BirthDate.Value.ToShortDateString()</span></p></li>
+		<li><p>Birth Date: <span>@Model.BirthDate.Value.ToString("dd MMM yyyy")</span></p></li>
 	}
 </ul>

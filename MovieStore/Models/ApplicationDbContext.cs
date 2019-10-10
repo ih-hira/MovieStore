@@ -21,5 +21,7 @@ namespace MovieStore.Models
 
 		public System.Data.Entity.DbSet<MovieStore.Models.Movie> Movies { get; set; }
 		public System.Data.Entity.DbSet<MovieStore.Models.Customer> Customers { get; set; }
+		public System.Data.Entity.DbSet<MovieStore.Models.MembershipType> MembershipTypes { get; set; }
+
 	}
 }
