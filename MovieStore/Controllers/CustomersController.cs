@@ -25,15 +25,8 @@ namespace MovieStore.Controllers
 		// GET: Customers
 		public ActionResult Index()
 		{
-
-			//var customers = new List<Customer>
-			//{
-			//	new Customer{Name="John Smith"},
-			//	new Customer{Name="Stephen Rock"},
-			//	new Customer{Name="Jemmy Leinstar"}
-			//};
 			var customers = db.Customers.Include(c => c.MembershipType).ToList();
-			var viewModel = new MovieViewModel
+			var viewModel = new ListViewModel
 			{
 				Customers = customers
 			};
@@ -45,7 +38,8 @@ namespace MovieStore.Controllers
 			var membershipTypes = db.MembershipTypes.ToList();
 			var viewModel = new CustomerFormViewModel
 			{
-				MembershipTypes = membershipTypes
+				MembershipTypes = membershipTypes,
+				Title = "New Customer"
 			};
 			return View("CustomerForm",viewModel);
 		}
@@ -86,7 +80,8 @@ namespace MovieStore.Controllers
 			var viewModel = new CustomerFormViewModel
 			{
 				Customer = customer,
-				MembershipTypes = db.MembershipTypes.ToList()
+				MembershipTypes = db.MembershipTypes.ToList(),
+				Title = "Edit Customer"
 			};
 
 			return View("CustomerForm",viewModel);

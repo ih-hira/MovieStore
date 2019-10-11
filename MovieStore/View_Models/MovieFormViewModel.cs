@@ -6,9 +6,12 @@ using MovieStore.Models;
 
 namespace MovieStore.View_Models
 {
-	public class MovieViewModel
+	public class MovieFormViewModel
 	{
-		public List<Movie> Movie { get; set; }
-		public List<Customer> Customers { get; set; }
+		public IEnumerable<Genre> Genres { get; set; }
+
+		public Movie Movie { get; set; }
+
+		public string Title { get; set; }
 	}
 }

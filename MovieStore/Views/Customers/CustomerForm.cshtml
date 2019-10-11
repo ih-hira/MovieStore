@@ -1,10 +1,10 @@
 ﻿@model MovieStore.View_Models.CustomerFormViewModel
 @{
-	ViewBag.Title = "NewCustomer";
+	ViewBag.Title = Model.Title;
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+<h2>@Model.Title</h2>
 
 @*this line creates <form> opening tag*@
 @using (Html.BeginForm("Save", "Customers"))
@@ -27,7 +27,7 @@
 			@Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter ?
 		</label>
 	</div>
-	@Html.HiddenFor(m => m.Customer.Id)
+	@Html.HiddenFor(c => c.Customer.Id)
 	<button type="submit" class="btn btn-primary">Save</button>
 }
 @*this second } creates </form> opening tag if we use using method*@

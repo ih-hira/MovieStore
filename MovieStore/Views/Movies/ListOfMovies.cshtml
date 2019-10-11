@@ -1,11 +1,12 @@
-﻿@model MovieStore.View_Models.MovieViewModel
+﻿@model MovieStore.View_Models.ListViewModel
 @{
 	ViewBag.Title = "ListOfMovies";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>List Of Movies</h2>
-<table>
+<a href="../movies/newmovie" class="btn btn-primary">New Movie</a>
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -17,7 +18,7 @@
 			foreach(var movie in Model.Movie)
 			{
 				<tr>
-					<td>@Html.ActionLink(movie.Name,"Details","Movies",new { id= movie.Id}, null)</td>
+					<td>@Html.ActionLink(movie.Name,"Edit","Movies",new { id= movie.Id}, null)</td>
 					<td>@movie.Genre.Name</td>
 				</tr>
 			}
