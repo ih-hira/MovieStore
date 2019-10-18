@@ -9,29 +9,36 @@
 @*this line creates <form> opening tag*@
 @using (Html.BeginForm("Save", "Customers"))
 {
+	@*@Html.ValidationSummary()*@
 	<div class="form-group">
-		@Html.LabelFor(m => m.Customer.Name)
-		@Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.Customer.Name)
+		@Html.LabelFor(c => c.Customer.Name)
+		@Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
+		@Html.ValidationMessageFor(c => c.Customer.Name)
 	</div>
 
 	<div class="form-group">
-		@Html.LabelFor(m => m.Customer.BirthDate)
-		@Html.TextBoxFor(m => m.Customer.BirthDate, "{0: dd MMM yyyy}", new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.Customer.BirthDate)
+		@Html.LabelFor(c => c.Customer.BirthDate)
+		@Html.TextBoxFor(c => c.Customer.BirthDate, "{0: dd MMM yyyy}", new { @class = "form-control" })
+		@Html.ValidationMessageFor(c => c.Customer.BirthDate)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(m => m.Customer.MembershipTypeId)
-		@Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+		@Html.LabelFor(c => c.Customer.MembershipTypeId)
+		@Html.DropDownListFor(c => c.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+		@Html.ValidationMessageFor(c => c.Customer.MembershipTypeId)
 	</div>
 	<div class="checkbox">
 		<label>
-			@Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter ?
+			@Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter ?
 		</label>
 	</div>
 	@Html.HiddenFor(c => c.Customer.Id)
+	@Html.AntiForgeryToken()
 	<button type="submit" class="btn btn-primary">Save</button>
 }
 @*this second } creates </form> opening tag if we use using method*@
+
+@section scripts
+{
+	@Scripts.Render("~/bundles/jqueryval")
+}
 

@@ -35,16 +35,17 @@ namespace MovieStore.Controllers
 		}
 		public ActionResult NewCustomer()
 		{
-			var membershipTypes = db.MembershipTypes.ToList();
 			var viewModel = new CustomerFormViewModel
 			{
-				MembershipTypes = membershipTypes,
-				Title = "New Customer"
+				Customer = new Customer(),
+				MembershipTypes = db.MembershipTypes.ToList(),
+				Title = "New Customer" 
 			};
 			return View("CustomerForm",viewModel);
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult Save(Customer customer)
 		{
 			if(!ModelState.IsValid)
@@ -52,7 +53,8 @@ namespace MovieStore.Controllers
 				var viewModel = new CustomerFormViewModel
 				{
 					Customer = customer,
-					MembershipTypes = db.MembershipTypes.ToList()
+					MembershipTypes = db.MembershipTypes.ToList(),
+					Title = "New Customer"
 				};
 				return View("CustomerForm", viewModel);
 			}
