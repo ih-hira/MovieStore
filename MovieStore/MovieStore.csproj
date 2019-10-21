@@ -192,6 +192,7 @@
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\MovieStockRange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View_Models\ListViewModel.cs" />
     <Compile Include="View_Models\CustomerFormViewModel.cs" />

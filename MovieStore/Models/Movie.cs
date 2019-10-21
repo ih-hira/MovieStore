@@ -9,7 +9,7 @@ namespace MovieStore.Models
 	public class Movie
 	{
 		public int Id { get; set; }
-		[Required]
+		[Required(ErrorMessage="Please enter movie name")]
 		[StringLength(255)]
 		public string Name { get; set; }
 		public Genre Genre { get; set; }
@@ -23,6 +23,7 @@ namespace MovieStore.Models
 		public DateTime ReleaseDate { get; set; }
 
 		[Display(Name = "Number in Stock")]
+        [MovieStockRange]
 		public byte NumberInStock { get; set; }
 	}
 }
