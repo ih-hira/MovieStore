@@ -16,7 +16,7 @@ namespace MovieStore.App_Start
             Mapper.CreateMap<Customer, CustomerDTO>();
             Mapper.CreateMap<Movie, MovieDTO>();
             Mapper.CreateMap<MembershipType, MembershipTypeDTO>();
-            Mapper.CreateMap<Genre, GenreDTO>().ForMember(g => g.Id, opt => opt.Ignore());
+            Mapper.CreateMap<Genre, GenreDTO>();
 
 
             // Dto to Domain

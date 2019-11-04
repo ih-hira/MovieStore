@@ -44,8 +44,6 @@ namespace MovieStore.Controllers.api
             var customer = Mapper.Map<CustomerDTO, Customer>(customerDto);
             db.Customers.Add(customer);
             db.SaveChanges();
-
-            customerDto.Id = customer.Id;
             return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
 

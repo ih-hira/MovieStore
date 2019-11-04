@@ -47,7 +47,6 @@ namespace MovieStore.Controllers.api
             db.Movies.Add(movie);
             db.SaveChanges();
 
-            movieDto.Id = movie.Id;
             return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDto);
         }
 
@@ -56,13 +55,26 @@ namespace MovieStore.Controllers.api
         public IHttpActionResult UpdateMovie(int id, MovieDTO movieDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
+            var movieInDb = db.Movies.SingleOrDefault(m => m.Id == id);
+            if (movieInDb == null)
+                return NotFound();
+
+            Mapper.Map(movieDto, movieInDb);
+
+            db.SaveChanges();
+            return Ok();
+        }
+
+        //DELETE /api/cutomer/1
+        [HttpDelete]
+        public IHttpActionResult DeleteMovie(int id)
+        {
             var movieInDb = db.Movies.SingleOrDefault(m => m.Id == id);
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            Mapper.Map(movieDto, movieInDb);
-
+            db.Movies.Remove(movieInDb);
             db.SaveChanges();
             return Ok();
         }
