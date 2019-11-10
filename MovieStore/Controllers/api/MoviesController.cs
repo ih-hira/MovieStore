@@ -66,7 +66,7 @@ namespace MovieStore.Controllers.api
             return Ok();
         }
 
-        //DELETE /api/cutomer/1
+        //DELETE /api/customer/1
         [HttpDelete]
         public IHttpActionResult DeleteMovie(int id)
         {
